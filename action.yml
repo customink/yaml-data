@@ -1,0 +1,12 @@
+name: 'YAML Data Action'
+description: 'Safely read CloudFormation YAML data.'
+inputs:
+  file:
+    description: 'The path to the YAML file.'
+    required: true
+  get:
+    description: 'The object property you need.'
+    required: true
+runs:
+  using: 'node16'
+  main: 'dist/index.js'

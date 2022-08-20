@@ -1,0 +1,39 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Parameters:
+  XDataName:
+    Type: String
+    Default: x-data-value
+Globals:
+  Function:
+    Environment:
+      Variables:
+        MY_ENV: myvalue
+Resources:
+  DeadLetterQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      MessageRetentionPeriod: 1209600
+      QueueName: my-queue-name-dlq
+  EventQueueE295888A:
+    Type: AWS::SQS::Queue
+    Properties:
+      MessageRetentionPeriod: 21600
+      QueueName: my-queue-name
+      RedrivePolicy:
+        deadLetterTargetArn: !GetAtt DeadLetterQueue.Arn
+        maxReceiveCount: 72
+      VisibilityTimeout: 301
+  QueuesPolicy:
+    Type: AWS::SQS::QueuePolicy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: events.amazonaws.com
+            Action: sqs:SendMessage
+            Resource: 
+              - !GetAtt EventQueueE295888A.Arn
+      Queues:
+        - !Ref EventQueueE295888A

@@ -1,0 +1,3 @@
+rollbar:
+  production: "/services/deployment-history/ROLLBAR_ACCESS_TOKEN"
+  staging: "/services/deployment-history/ROLLBAR_ACCESS_TOKEN"
