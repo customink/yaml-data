@@ -1,16 +1,20 @@
 # YAML Data Action
 
-Safely read CloudFormation YAML data. Uses `lodash.get` (https://www.npmjs.com/package/lodash.get) for the `get` input.
+Safely read CloudFormation YAML data. Uses `lodash.get` (https://www.npmjs.com/package/lodash.get) for the `get` input. The value is in the `value` output.
 
 ## Usage
 
 ```yaml
-deploy-history:
-  id: yaml-data
+- name: Get Data
   uses: customink/yaml-data@main
+  id: mydata
   with:
-    file: somefile
+    file: somefile.yaml
     get: obj.path
+- name: Use Output
+  run: |
+    value="${{ steps.mydata.outputs.value }}"
+    echo "Found value: ${value}"
 ```
 
 ## Development
