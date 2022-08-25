@@ -24,7 +24,7 @@ jobs:
       id: exercise
       with:
         file: test.yaml
-        get: Parameters.XDataName.String
+        get: Parameters.XDataName.Default
     - name: Assert
       run: |
         value="${{ steps.exercise.outputs.value }}"
