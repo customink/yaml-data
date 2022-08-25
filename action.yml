@@ -7,6 +7,9 @@ inputs:
   get:
     description: 'The object property you need.'
     required: true
+outputs:
+  value:
+    description: 'The value from the get input.'
 runs:
   using: 'node16'
   main: 'dist/index.js'

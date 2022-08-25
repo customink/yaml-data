@@ -45,6 +45,7 @@ function returnValue(v) {
     process.stdout.write(rv);
     return rv;
   } else {
+    core.setOutput("value", v);
     return v;
   }
 }
