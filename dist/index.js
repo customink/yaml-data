@@ -12092,18 +12092,27 @@ const fs = __nccwpck_require__(5747);
 const get = __nccwpck_require__(9197);
 
 async function run() {
+  for (let n = 1; n <= 5; n++) {
+    runNumbered(n);
+  }
+}
+
+function runNumbered(n) {
   try {
     const data = fs.readFileSync(file(), "utf8");
     const obj = yaml.load(data, { schema: CLOUDFORMATION_SCHEMA });
-    const result = get(obj, key());
-    return returnValue(result);
+    const getKey = key(n);
+    if (getKey) {
+      const result = get(obj, getKey);
+      setOutput(result, n);
+    }
   } catch (error) {
     fail(error);
   }
 }
 
-function key() {
-  return process.env["X_TEST_GET"] || core.getInput("get");
+function key(n) {
+  return process.env[`X_TEST_GET_${n}`] || core.getInput(`get${n}`);
 }
 
 function file() {
@@ -12112,27 +12121,27 @@ function file() {
 
 function fail(error) {
   if (process.env.X_TEST === "true") {
-    process.stdout.write(error.message);
+    console.log(error.message);
   } else {
     core.setFailed(error.message);
   }
 }
 
-function returnValue(v) {
+function setOutput(v, n) {
   if (process.env.X_TEST === "true") {
     let rv;
     if (typeof v === "string") {
       rv = v;
     } else if (typeof v === "undefined") {
-      process.stdout.write("undefined");
+      console.log("undefined");
       return v;
     } else {
       rv = JSON.stringify(v);
     }
-    process.stdout.write(rv);
+    console.log(rv);
     return rv;
   } else {
-    core.setOutput("value", v);
+    core.setOutput(`value${n}`, v);
     return v;
   }
 }

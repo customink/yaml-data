@@ -1,9 +1,21 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Parameters:
-  XDataName:
+  XData1:
     Type: String
-    Default: x-data-value
+    Default: x-data-1
+  XData2:
+    Type: String
+    Default: x-data-2
+  XData3:
+    Type: String
+    Default: x-data-3
+  XData4:
+    Type: String
+    Default: x-data-4
+  XData5:
+    Type: String
+    Default: x-data-5
 Globals:
   Function:
     Environment:

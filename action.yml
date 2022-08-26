@@ -4,12 +4,32 @@ inputs:
   file:
     description: 'The path to the YAML file.'
     required: true
-  get:
+  get1:
     description: 'The object property you need.'
     required: true
+  get2:
+    description: 'Optional second object property you need.'
+    required: false
+  get3:
+    description: 'Optional third object property you need.'
+    required: false
+  get4:
+    description: 'Optional forth object property you need.'
+    required: false
+  get5:
+    description: 'Optional fifth object property you need.'
+    required: false
 outputs:
-  value:
+  value1:
     description: 'The value from the get input.'
+  value2:
+    description: 'The value from the optional get2.'
+  value3:
+    description: 'The value from the optional get3.'
+  value4:
+    description: 'The value from the optional get4.'
+  value5:
+    description: 'The value from the optional get5.'
 runs:
   using: 'node16'
   main: 'dist/index.js'
