@@ -41,8 +41,33 @@ jobs:
         echo "Found value3: ${value3}"
         echo "Found value4: ${value4}"
         echo "Found value5: ${value5}"
-        if [ "${value1}" = "x-data-1" ]; then; echo "value1 ✅"; else; echo "value1 🚫"; exit 1; fi
-        if [ "${value2}" = "x-data-2" ]; then; echo "value2 ✅"; else; echo "value2 🚫"; exit 1; fi
-        if [ "${value3}" = "x-data-3" ]; then; echo "value3 ✅"; else; echo "value3 🚫"; exit 1; fi
-        if [ "${value4}" = "x-data-4" ]; then; echo "value4 ✅"; else; echo "value4 🚫"; exit 1; fi
-        if [ "${value5}" = "x-data-5" ]; then; echo "value5 ✅"; else; echo "value5 🚫"; exit 1; fi
+        if [ "${value1}" = "x-data-1" ]; then
+          echo "value1 ✅"
+        else
+          echo "value1 🚫"
+          exit 1
+        fi
+        if [ "${value2}" = "x-data-2" ]; then
+          echo "value2 ✅"
+        else
+          echo "value2 🚫"
+          exit 1
+        fi
+        if [ "${value3}" = "x-data-3" ]; then
+          echo "value3 ✅"
+        else
+          echo "value3 🚫"
+          exit 1
+        fi
+        if [ "${value4}" = "x-data-4" ]; then
+          echo "value4 ✅"
+        else
+          echo "value4 🚫"
+          exit 1
+        fi
+        if [ "${value5}" = "x-data-5" ]; then
+          echo "value5 ✅"
+        else
+          echo "value5 🚫"
+          exit 1
+        fi
